@@ -1,5 +1,5 @@
 from django.conf import settings
-from production.models import Product
+from product.models import Product
 
 
 
@@ -7,7 +7,7 @@ from production.models import Product
 class Cart(object):
     def __init__(self, request):
         self.session = request.session
-        cart = self.session.get(settings.SESSION_ID)
+        cart = self.session.get(settings.CART_SESSION_ID)
         
         if not cart:
             cart = self.session[settings.CART_SESSION_ID] = {}
