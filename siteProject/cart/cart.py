@@ -14,7 +14,7 @@ class Cart(object):
             
         self.cart = cart
         
-    def __str__(self):
+    def __iter__(self):
         for p in self.cart.keys():
             self.cart[str(p)]['product'] = Product.objects.get(pk=p)
     
