@@ -7,6 +7,19 @@ from product.models import Product, Category
 def frontPage(request):
     products = Product.objects.all()[0:8]
     return render(request, 'core/frontpage.html', {'products':products})
+
+def signup(request):
+    return render(request, 'core/signup.html')
+
+def login(request):
+    return render(request, 'core/login.html')
+
+
+
+
+
+
+
 # create a new view for the shop page, will get all the products from the db and render them
 def shop(request):
     categories = Category.objects.all()
