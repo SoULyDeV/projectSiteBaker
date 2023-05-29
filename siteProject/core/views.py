@@ -1,17 +1,32 @@
+from django.contrib.auth import login
 from django.db.models import Q
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 #import the class Product from app product to redering it in the templates
 from product.models import Product, Category
+
+from .forms import SignUpForm
 # Create your views here.
 def frontPage(request):
     products = Product.objects.all()[0:8]
     return render(request, 'core/frontpage.html', {'products':products})
 
 def signup(request):
-    return render(request, 'core/signup.html')
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        
+        if form.is_valid():
+            user = form.save()
+            
+            login(request, user)
+            
+            return redirect('/')
+    else:
+        form = SignUpForm()
+        
+    return render(request, 'core/signup.html', {'form':form})
 
-def login(request):
+def login_old(request):
     return render(request, 'core/login.html')
 
 
