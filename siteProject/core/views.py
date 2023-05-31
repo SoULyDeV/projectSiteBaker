@@ -8,7 +8,7 @@ from product.models import Product, Category
 from .forms import SignUpForm
 # Create your views here.
 def frontPage(request):
-    products = Product.objects.all()[0:8]
+    products = Product.objects.all()[0:4]
     return render(request, 'core/frontpage.html', {'products':products})
 
 def signup(request):
@@ -24,7 +24,7 @@ def signup(request):
     else:
         form = SignUpForm()
         
-    return render(request, 'core/signup.html', {'form':form})
+    return render(request, 'core/signup.html', {'form': form})
 
 def login_old(request):
     return render(request, 'core/login.html')
