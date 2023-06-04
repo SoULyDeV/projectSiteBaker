@@ -27,6 +27,8 @@ def start_order(request):
             
             item = OrderItem.objects.create(order=order, product=product, quantity=quantity, price=price)
             
+            
         return redirect('myaccount')
+        cart.clear()
     
     return redirect('cart')
